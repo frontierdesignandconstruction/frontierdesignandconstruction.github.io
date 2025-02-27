@@ -1,206 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontier Design and Construction</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Option 2: Modern Blue & Teal Palette */
-        .header-bg { background-color: #1c3553; color: #fff; }
-        .footer-bg { background-color: #1c3553; color: #fff; }
-        .btn-primary { background-color: #4a90a4; color: #fff; } /* Updated button color */
-        .btn-primary:hover { background-color: #62b5cb; } /* Brighter teal on hover */
-        .bg-light { background-color: #f8f8ff; } /* Updated background */
-        .text-primary { color: #1c3553; } /* For headings */
-        .text-secondary { color: #333333; } /* For body text */
-        /* Remove or update these if you're not using them */
-        /* .bg-mint { background-color: #e8f6f5; }  */
-        /* .text-steel-blue { color: #4d7e9d; } */
-
-        .hover-card { transition: all 0.3s ease; }
-        .hover-card:hover { transform: translateY(-5px); background-color: #62b5cb; color: white; } /* Use accent color on hover */
-        .hover-card-title:hover { color: #1c3553; transition: color 0.3s ease; }
-        .card-bg { background-color: #e0f2f7; } /* Lighter teal for cards */
-        .card-img {
-            height: 200px; /* Adjust as necessary for your design */
-            width: 100%;
-            object-fit: cover;
-            border-radius: 0.25rem; /* for rounded corners */
-        }
-
-        /* Remove the old fade animation - we'll handle transitions in JS */
-        /*
-        .fade {
-            animation: fadeEffect 1.5s ease;
-        }
-        @keyframes fadeEffect {
-            from { opacity: .4 }
-            to { opacity: 1 }
-        }
-        */
-
-        #about, #services {
-            padding-top: 2rem;
-            padding-bottom: 2rem; /* Adjust padding for better spacing control */
-        }
-        #home {
-            margin: 0; /* Remove margins */
-        }
-        body, html {
-            padding: 0;
-            margin: 0;
-        }
-        #about img.h-40 {
-            height: 160px; /* Adjust height as needed */
-            width: 160px; /* Adjust width as needed */
-            object-fit: cover;
-            object-position: top; /* Adjust position to center vertically */
-            border-radius: 50%;
-        }
-        .relative {
-            position: relative;
-        }
-        .absolute {
-            position: absolute;
-        }
-        .transform {
-            transform: translateY(-50%);
-        }
-        .bg-gray-800 {
-            background-color: #2d3748;
-        }
-        .text-white {
-            color: #fff;
-        }
-        .p-2 {
-            padding: 0.5rem;
-        }
-        .rounded-full {
-            border-radius: 9999px;
-        }
-         /* Slideshow Container */
-        #slideshow-container {
-            position: relative; /* Important for absolute positioning of children */
-            width: 100%;
-            overflow: hidden; /* Ensures slides don't spill out */
-        }
-
-        /* Individual Slides */
-        .mySlides {
-            display: none; /* Hidden by default, JS will show them */
-            width: 100%;
-            /* Add padding to the TOP and BOTTOM to make space for navigation */
-            padding-top: 50px;    /* Adjust as needed */
-            padding-bottom: 20px;  /* Reduced bottom padding - dots are handled separately */
-            padding-left: 200px;
-            padding-right: 200px;
-            box-sizing: border-box; /* Include padding in the element's total width/height */
-            text-align: center;
-        }
-
-        /* Dot Container */
-        .dot-container {
-            position: absolute;
-            bottom: 2%;       /*  Percentage-based positioning! */
-            left: 50%;
-            transform: translateX(-50%); /* Center horizontally */
-            z-index: 20; /* Higher than the slides */
-            text-align: center; /* Ensure dots are centered */
-        }
-
-        /* Navigation dots */
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Frontier Design and Construction</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            /* Option 2: Modern Blue & Teal Palette */
+            .header-bg { background-color: #1c3553; color: #fff; }
+            .footer-bg { background-color: #1c3553; color: #fff; }
+            .btn-primary { background-color: #4a90a4; color: #fff; } /* Updated button color */
+            .btn-primary:hover { background-color: #62b5cb; } /* Brighter teal on hover */
+            .bg-light { background-color: #f8f8ff; } /* Updated background */
+            .text-primary { color: #1c3553; } /* For headings */
+            .text-secondary { color: #333333; } /* For body text */
+            .hover-card { transition: all 0.3s ease; }
+            .hover-card:hover { transform: translateY(-5px); background-color: #62b5cb; color: white; } /* Use accent color on hover */
+            .hover-card-title:hover { color: #1c3553; transition: color 0.3s ease; }
+            .card-bg { background-color: #e0f2f7; } /* Lighter teal for cards */
+            .card-img {
+                height: 200px; /* Adjust as necessary for your design */
+                width: 100%;
+                object-fit: cover;
+                border-radius: 0.25rem; /* for rounded corners */
+            }
+            #about, #services {
+                padding-top: 2rem;
+                padding-bottom: 2rem; /* Adjust padding for better spacing control */
+            }
+            #home {
+                margin: 0; /* Remove margins */
+            }
+            body, html {
+                padding: 0;
+                margin: 0;
+            }
+            #about img.h-40 {
+                height: 160px; /* Adjust height as needed */
+                width: 160px; /* Adjust width as needed */
+                object-fit: cover;
+                object-position: top; /* Adjust position to center vertically */
+                border-radius: 50%;
+            }
+            .relative {
+                position: relative;
+            }
+            .absolute {
+                position: absolute;
+            }
+            .transform {
+                transform: translateY(-50%);
+            }
+            .bg-gray-800 {
+                background-color: #2d3748;
+            }
+            .text-white {
+                color: #fff;
+            }
+            .p-2 {
+                padding: 0.5rem;
+            }
+            .rounded-full {
+                border-radius: 9999px;
+            }
+            /* Slideshow Container */
+            #slideshow-container {
+                position: relative; /* Important for absolute positioning of children */
+                width: 100%;
+                overflow: hidden; /* Ensures slides don't spill out */
+            }
+            /* Individual Slides */
+            .mySlides {
+                display: none; /* Hidden by default, JS will show them */
+                width: 100%;
+                padding-top: 50px; /* Adjust as needed */
+                padding-bottom: 20px; /* Reduced bottom padding - dots are handled separately */
+                padding-left: 200px;
+                padding-right: 200px;
+                box-sizing: border-box; /* Include padding in the element's total width/height */
+                text-align: center;
+            }
+            /* Dot Container */
+            .dot-container {
+                position: absolute;
+                bottom: 2%; /* Percentage-based positioning! */
+                left: 50%;
+                transform: translateX(-50%); /* Center horizontally */
+                z-index: 20; /* Higher than the slides */
+                text-align: center; /* Ensure dots are centered */
+            }
+            /* Navigation dots */
             .dot {
                 cursor: pointer;
                 height: 18px; /* Increased size */
-                width: 18px;  /* Increased size */
-                margin: 0 4px;  /* More spacing */
+                width: 18px; /* Increased size */
+                margin: 0 4px; /* More spacing */
                 background-color: #bbb;
                 border-radius: 50%;
                 display: inline-block;
                 transition: background-color 0.6s ease;
-                z-index: 20;     /* Higher z-index */
+                z-index: 20; /* Higher z-index */
             }
-
             .active, .dot:hover {
                 background-color: #1c3553;
             }
-
-        /* Navigation Arrows */
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%); /* Correct vertical centering */
-            color: white;
-            font-size: 2rem; /* Larger arrows */
-            font-weight: bold;
-            cursor: pointer;
-            padding: 16px;
-            user-select: none;
-            z-index: 20;      /* Higher z-index */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
-        }
-
-        .prev {
-            left: 10px; /* Position on the left */
-        }
-
-        .next {
-            right: 10px; /* Position on the right */
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black on hover */
-        }
-    /* Slideshow Container */
-        .slideshow-container {
-        position: relative;
-        margin: auto;
-        }
-    /*  */
-    /* WhatsApp Button Widget */
-    .whatsapp-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #25D366;
-        color: white;
-        border-radius: 50px;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        z-index: 1000;
-        transition: background-color 0.3s ease;
-    }
-
-    .whatsapp-button:hover {
-        background-color: #128C7E;
-    }
-
-    .whatsapp-button i {
-        margin-right: 10px;
-    }
-
-    .whatsapp-button span {
-        font-size: 16px;
-        font-weight: bold;
-    }
-    </style>
-</head>
+            /* Navigation Arrows */
+            .prev, .next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%); /* Correct vertical centering */
+                color: white;
+                font-size: 2rem; /* Larger arrows */
+                font-weight: bold;
+                cursor: pointer;
+                padding: 16px;
+                user-select: none;
+                z-index: 20; /* Higher z-index */
+                transition: background-color 0.3s ease; /* Smooth hover effect */
+            }
+            .prev {
+                left: 10px; /* Position on the left */
+            }
+            .next {
+                right: 10px; /* Position on the right */
+            }
+            .prev:hover, .next:hover {
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black on hover */
+            }
+            /* Slideshow Container */
+            .slideshow-container {
+                position: relative;
+                margin: auto;
+            }
+            /* WhatsApp Button Widget */
+            .whatsapp-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #25D366;
+                color: white;
+                border-radius: 50px;
+                padding: 10px 20px;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                z-index: 1000;
+                transition: background-color 0.3s ease;
+            }
+            .whatsapp-button:hover {
+                background-color: #128C7E;
+            }
+            .whatsapp-button i {
+                margin-right: 10px;
+            }
+            .whatsapp-button span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            @media (max-width: 640px) {
+                .header-bg {
+                    padding: 1rem;
+                }
+                .header-bg img {
+                    height: 48px;
+                }
+                .header-bg h1 {
+                    font-size: 1.5rem;
+                }
+                .mySlides {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+                .whatsapp-button {
+                    bottom: 10px;
+                    right: 10px;
+                    padding: 8px 16px;
+                }
+                .whatsapp-button span {
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </head>
 <body class="bg-gray-100 text-gray-900">
-
-
 <!-- Header -->
 <header class="header-bg shadow">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-        <div class="flex items-center space-x-4">
-            <img src="images/logo/Logo.png" alt="Company Logo" class="h-48">
-            <h1 class="text-3xl font-extrabold text-white tracking-wide" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Frontier Design and Construction</h1>
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center p-4">
+        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+            <img src="images/logo/Logo.png" alt="Company Logo" class="h-24 md:h-48">
+            <h1 class="text-xl md:text-3xl font-extrabold text-white tracking-wide" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Frontier Design and Construction</h1>
         </div>
-        <div class="flex space-x-4">
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
             <a href="mailto:frontierdesignconstruction@gmail.com" class="flex items-center px-4 py-2 btn-primary text-white rounded-md hover:bg-red-600">
                 <i class="fas fa-envelope h-5 w-5 mr-2"></i>
                 Email
@@ -223,68 +215,59 @@
 <!-- Main Content -->
 <main>
     <!-- Hero Section -->
-   <section id="home" class="bg-cover bg-center flex items-center justify-center" style=" margin-top: 0;">
+<section id="home" class="bg-cover bg-center flex items-center justify-center" style="margin-top: 0;">
     <div class="p-6 rounded-lg text-center text-white relative" style="background-color: rgba(146, 205, 219, 0.8); width: 100%;">
-        <div id="slideshow-container" class="relative  w-full overflow-hidden">
-                <!-- Slide 1 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Bringing Your Architectural Vision to Life</div>
-                    <p class="text-lg">We craft exceptional spaces, meticulously designed and flawlessly executed. </p>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Stuck with local contractors?</div>
-                    <p class="text-lg">Our team ensures quality and reliability in every project. </p>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Need an outclassed house?</div>
-                    <p class="text-lg">We specialize in creating luxurious and functional living spaces. </p>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Need an architecturally designed house?</div>
-                    <p class="text-lg">Our architects blend creativity and practicality to design your dream home. </p>
-                </div>
-
-                <!-- Slide 5 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Sustainable Design for a Better Future</div>
-                    <p class="text-lg">We integrate eco-friendly practices and materials to create beautiful, responsible homes. </p>
-                </div>
-
-                <!-- Slide 6 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Transform Your Existing Space</div>
-                    <p class="text-lg">We expertly renovate and remodel homes, maximizing their potential and enhancing their value. </p>
-                </div>
-
-                <!-- Slide 7 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Designing Inspiring Commercial Spaces</div>
-                    <p class="text-lg">We create functional and aesthetically pleasing commercial buildings that enhance your brand. </p>
-                </div>
-
-                <!-- Slide 8 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">A Seamless Design & Build Process</div>
-                    <p class="text-lg">From initial concept to final construction, we guide you every step of the way.</p>
-                </div>
-
-                <!-- Slide 9 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">What Our Clients Say</div>
-                    <p class="text-lg">"They exceeded our expectations! The design was perfect, and the process was smooth." - John & Mary S. </p>
-                </div>
-
-                <!-- Slide 10 -->
-                <div class="mySlides">
-                    <div class="text-4xl font-bold mb-4">Ready to Start Your Dream Project?</div>
-                    <p class="text-lg">Let's discuss your vision and create something extraordinary together.</p>
-                </div>
+        <div id="slideshow-container" class="relative w-full overflow-hidden">
+            <!-- Slide 1 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Bringing Your Architectural Vision to Life</div>
+                <p class="text-base md:text-lg">We craft exceptional spaces, meticulously designed and flawlessly executed.</p>
+            </div>
+            <!-- Slide 2 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Stuck with local contractors?</div>
+                <p class="text-base md:text-lg">Our team ensures quality and reliability in every project.</p>
+            </div>
+            <!-- Slide 3 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Need an outclassed house?</div>
+                <p class="text-base md:text-lg">We specialize in creating luxurious and functional living spaces.</p>
+            </div>
+            <!-- Slide 4 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Need an architecturally designed house?</div>
+                <p class="text-base md:text-lg">Our architects blend creativity and practicality to design your dream home.</p>
+            </div>
+            <!-- Slide 5 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Sustainable Design for a Better Future</div>
+                <p class="text-base md:text-lg">We integrate eco-friendly practices and materials to create beautiful, responsible homes.</p>
+            </div>
+            <!-- Slide 6 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Transform Your Existing Space</div>
+                <p class="text-base md:text-lg">We expertly renovate and remodel homes, maximizing their potential and enhancing their value.</p>
+            </div>
+            <!-- Slide 7 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Designing Inspiring Commercial Spaces</div>
+                <p class="text-base md:text-lg">We create functional and aesthetically pleasing commercial buildings that enhance your brand.</p>
+            </div>
+            <!-- Slide 8 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">A Seamless Design & Build Process</div>
+                <p class="text-base md:text-lg">From initial concept to final construction, we guide you every step of the way.</p>
+            </div>
+            <!-- Slide 9 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">What Our Clients Say</div>
+                <p class="text-base md:text-lg">"They exceeded our expectations! The design was perfect, and the process was smooth." - John & Mary S.</p>
+            </div>
+            <!-- Slide 10 -->
+            <div class="mySlides">
+                <div class="text-2xl md:text-4xl font-bold mb-4">Ready to Start Your Dream Project?</div>
+                <p class="text-base md:text-lg">Let's discuss your vision and create something extraordinary together.</p>
+            </div>
             <br>
             <!-- Navigation dots (OUTSIDE the slides) -->
             <div class="dot-container">
@@ -300,10 +283,9 @@
                 <span class="dot" onclick="currentSlide(10)"></span>
             </div>
         </div> <!-- End of #slideshow-container -->
-         <!-- Next and previous buttons (OUTSIDE the slideshow-container)-->
-            <a class="absolute prev left-0 top-1/2 transform -translate-y-1/2 text-white text-3xl font-bold cursor-pointer px-3 py-2 rounded-full hover:bg-gray-700 hover:bg-opacity-50" onclick="plusSlides(-1)">❮</a>
-            <a class="absolute next right-0 top-1/2 transform -translate-y-1/2 text-white text-3xl font-bold cursor-pointer px-3 py-2 rounded-full hover:bg-gray-700 hover:bg-opacity-50" onclick="plusSlides(1)">❯</a>
-
+        <!-- Next and previous buttons (OUTSIDE the slideshow-container)-->
+        <a class="absolute prev left-0 top-1/2 transform -translate-y-1/2 text-white text-2xl md:text-3xl font-bold cursor-pointer px-3 py-2 rounded-full hover:bg-gray-700 hover:bg-opacity-50" onclick="plusSlides(-1)">❮</a>
+        <a class="absolute next right-0 top-1/2 transform -translate-y-1/2 text-white text-2xl md:text-3xl font-bold cursor-pointer px-3 py-2 rounded-full hover:bg-gray-700 hover:bg-opacity-50" onclick="plusSlides(1)">❯</a>
     </div> <!-- This closes the div with the semi-transparent background -->
 </section>
 
@@ -312,8 +294,8 @@
         <div class="flex flex-col md:flex-row items-center text-center md:items-start md:text-left space-y-4 md:space-y-0 md:space-x-6">
             <!-- Eng Arsalan -->
             <div class="flex-1">
-                <img src="images/placeholder/engineer_arsalan_khalid.jpg" alt="Chief Civil Engineer Arsalan Khalid Khan" class="h-40 w-40 rounded-full object-cover object-top mx-auto md:mx-0">
-                <h3 class="text-3xl font-bold text-steel-blue hover-card-title mt-4">Eng Arsalan Khalid Khan</h3>
+                <img src="images/placeholder/engineer_arsalan_khalid.jpg" alt="Chief Civil Engineer Arsalan Khalid Khan" class="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover object-top mx-auto md:mx-0">
+                <h3 class="text-2xl md:text-3xl font-bold text-steel-blue hover-card-title mt-4">Eng Arsalan Khalid Khan</h3>
                 <p class="text-secondary">Civil Engineer & Construction Expert</p>
                 <p class="text-secondary">Cyprus International University</p>
                 <p class="mt-4 text-secondary">
@@ -322,16 +304,16 @@
             </div>
             <!-- Versus Divider -->
             <div class="flex items-center justify-center">
-                <h3 class="text-3xl font-bold text-steel-blue hover-card-title"></h3>
+                <h3 class="text-2xl md:text-3xl font-bold text-steel-blue hover-card-title"></h3>
             </div>
             <!-- Architect Mashal -->
             <div class="flex-1">
-                <img src="images/placeholder/architect_mashal_haroon.jpg" alt="Chief Architect Mashal Haroon" class="h-40 w-40 rounded-full object-cover object-top mx-auto md:mx-0">
-                <h3 class="text-3xl font-bold text-steel-blue hover-card-title mt-4">Architect Mashal Haroon</h3>
-                 <p class="text-secondary">Chief Architect & Urban Planner</p>
-                  <p class="text-secondary">University of Engineering and Technology</p>
+                <img src="images/placeholder/architect_mashal_haroon.jpg" alt="Chief Architect Mashal Haroon" class="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover object-top mx-auto md:mx-0">
+                <h3 class="text-2xl md:text-3xl font-bold text-steel-blue hover-card-title mt-4">Architect Mashal Haroon</h3>
+                <p class="text-secondary">Chief Architect & Urban Planner</p>
+                <p class="text-secondary">University of Engineering and Technology</p>
                 <p class="mt-4 text-secondary">
-                    Mashal blends innovative design with practical solutions to create spaces that inspire and function flawlessly. From luxurious homes to thriving commercial centers, her architectural vision shapes communities and elevates living experiences. Trust her to transform your ideas into stunning realities.
+                    Mashal blends innovative design with practical solutions to create spaces that inspire and function flawlessly. From luxurious homes to thriving commercial centers, his architectural vision shapes communities and elevates living experiences. Trust him to transform your ideas into stunning realities.
                 </p>
             </div>
         </div>
@@ -340,8 +322,8 @@
     <!-- Services Section -->
     <section id="services" class="bg-mint py-12">
         <div class="max-w-7xl mx-auto text-center">
-            <h3 class="text-3xl font-bold mb-6 text-steel-blue hover-card-title">Our Services</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-steel-blue hover-card-title">Our Services</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Conceptualization -->
                 <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300">
                     <div class="flex justify-center mb-4">
@@ -413,56 +395,49 @@
         <div class="relative">
             <div class="flex overflow-x-auto space-x-4" id="commercial-slider">
                 <!-- Commercial Plaza -->
-                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105">
+                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105 min-w-[250px]">
                     <img src="/images/conceptual/commercial_plaza.jpg" alt="Commercial Plaza" class="card-img rounded-md mb-4">
                     <h4 class="font-bold text-steel-blue hover-card-title mb-2">Commercial Plaza</h4>
                     <p class="text-left">A modern commercial plaza designed to meet the needs of businesses and customers alike.</p>
                 </div>
-                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105">
+                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105 min-w-[250px]">
                     <img src="/images/projects_demos/almadinatower.jpg" alt="Almadinatower" class="card-img rounded-md mb-4">
                     <h4 class="font-bold text-steel-blue hover-card-title mb-2">Al Madina Tower-Peshawar</h4>
                     <p class="text-left">A state-of-the-art residential tower offering luxurious living spaces.</p>
                 </div>
             </div>
-            <!-- Navigation Buttons -->
-            <!-- <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="slideLeft('commercial-slider')">❮</button>
-            <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="slideRight('commercial-slider')">❯</button> -->
         </div>
     </div>
 
-    <!-- Residential Projects -->
     <!-- Residential Projects -->
     <div>
         <h4 class="text-2xl font-bold text-center mb-4 text-steel-blue hover-card-title">Residential Projects</h4>
         <div class="relative">
             <div class="flex overflow-x-auto space-x-4" id="residential-slider">
                 <!-- 1 Kanal House -->
-                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105">
+                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105 min-w-[250px]">
                     <img src="/images/projects_demos/1kanal_2.jpg" alt="1 Kanal House" class="card-img rounded-md mb-4">
                     <h4 class="font-bold text-steel-blue hover-card-title mb-2">Elegant Family Residence</h4>
                     <p class="text-left">Spacious and beautifully appointed, this home offers a perfect blend of comfort and style.</p>
                 </div>
-                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105">
+                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105 min-w-[250px]">
                     <img src="/images/projects_demos/1kanal_3.jpg" alt="1 Kanal House" class="card-img rounded-md mb-4">
                     <h4 class="font-bold text-steel-blue hover-card-title mb-2">Your Dream Home Awaits</h4>
                     <p class="text-left">A welcoming residence, thoughtfully designed for modern family life.</p>
                 </div>
-                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105">
+                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105 min-w-[250px]">
                     <img src="/images/projects_demos/1kanal_1.jpg" alt="1 Kanal House" class="card-img rounded-md mb-4">
                     <h4 class="font-bold text-steel-blue hover-card-title mb-2">Ultra-Modern Living</h4>
                     <p class="text-left">Experience the pinnacle of contemporary design in this exceptional residence.</p>
                 </div>  
-                <!-- entrance_housing_scheme.jpg -->
-                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105">
+                <div class="bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300 hover:scale-105 min-w-[250px]">
                     <img src="/images/projects_demos/entrance_housing_scheme.jpg" alt="Entrance Housing Scheme" class="card-img rounded-md mb-4">
                     <h4 class="font-bold text-steel-blue hover-card-title mb-2">Entrance Housing Scheme</h4>
                     <p class="text-left">A thoughtfully planned housing scheme offering a secure and vibrant living environment.</p>
                 </div>
-                <!-- Navigation Buttons
-                <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="slideLeft('residential-slider')">❮</button>
-                <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="slideRight('residential-slider')">❯</button> -->
             </div>
         </div>
+    </div>
 </section>
 
     <!-- Testimonials Section -->
@@ -474,78 +449,78 @@
             </div>
         </div>
     </section>
-</main>
-<!-- Footer -->
-<footer id="contact" class="footer-bg py-6">
-    <div class="max-w-7xl mx-auto text-center">
-        <div class="mb-4">
-            <h4 class="text-lg font-semibold text-white mb-2">Visit Us</h4>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.418105620315!2d71.4379050113344!3d34.03314451862648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d91b2bafe4ec6d%3A0x1d93ad060caebbb!2sFrontier%20Design%20and%20Construction!5e0!3m2!1sen!2s!4v1740581052046!5m2!1sen!2s" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    <!-- Footer -->
+    <footer id="contact" class="footer-bg py-6">
+        <div class="max-w-7xl mx-auto text-center px-4">
+            <div class="mb-4">
+                <h4 class="text-lg font-semibold text-white mb-2">Visit Us</h4>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.418105620315!2d71.4379050113344!3d34.03314451862648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d91b2bafe4ec6d%3A0x1d93ad060caebbb!2sFrontier%20Design%20and%20Construction!5e0!3m2!1sen!2s!4v1740581052046!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p class="mb-2 text-white">Contact Us: <a href="mailto:frontierdesignconstruction@gmail.com" class="text-red-400 hover:underline">frontierdesignconstruction@gmail.com</a> | <a href="https://wa.me/923220391601" class="text-red-400 hover:underline">+92 322 0391601</a></p>
+            <p class="mb-4 text-white">Follow us on:
+                <a href="https://www.tiktok.com/@frontier.design.c?_t=ZS-8uEc34whvdf&_r=1 " class="text-blue-400 hover:underline">Tiktok</a> |
+                <a href="https://www.facebook.com/share/166ha8hhQK/?mibextid=wwXIfr/" class="text-blue-400 hover:underline">Facebook</a>
+            </p>
+            <p class="text-white">© 2024 Frontier Design and Construction</p>
         </div>
-        <p class="mb-2 text-white">Contact Us: <a href="mailto:frontierdesignconstruction@gmail.com" class="text-red-400 hover:underline">frontierdesignconstruction@gmail.com</a> | <a href="https://wa.me/923220391601" class="text-red-400 hover:underline">+92 322 0391601</a></p>
-        <p class="mb-4 text-white">Follow us on:
-            <a href="https://www.tiktok.com/@frontier.design.c?_t=ZS-8uEc34whvdf&_r=1 " class="text-blue-400 hover:underline">Tiktok</a> |
-            <a href="https://www.facebook.com/share/166ha8hhQK/?mibextid=wwXIfr/" class="text-blue-400 hover:underline">Facebook</a>
-        </p>
-        <p class="text-white">© 2024 Frontier Design and Construction</p>
-    </div>
-</footer>
+    </footer>
+    
     <!-- WhatsApp Button Widget -->
     <div class="whatsapp-button" onclick="window.open('https://wa.me/923220391601', '_blank')">
         <i class="fab fa-whatsapp"></i>
         <span>Chat with us on WhatsApp</span>
     </div>
-    <!--  -->
+    
     <script>
         let slideIndex = 1; // Start at 1, not 0
-         showSlides(slideIndex);
-     
-         // Next/previous controls
-         function plusSlides(n) {
-             showSlides(slideIndex += n);
-         }
-     
-         // Thumbnail image controls
-         function currentSlide(n) {
-             showSlides(slideIndex = n);
-         }
-     
-         function showSlides(n) {
-             let i;
-             let slides = document.getElementsByClassName("mySlides");
-             let dots = document.getElementsByClassName("dot");
-             if (n > slides.length) {slideIndex = 1}
-             if (n < 1) {slideIndex = slides.length}
-             for (i = 0; i < slides.length; i++) {
-                 slides[i].style.display = "none";
-             }
-             for (i = 0; i < dots.length; i++) {
-                 dots[i].className = dots[i].className.replace(" active", "");
-             }
-             slides[slideIndex-1].style.display = "block";
-             dots[slideIndex-1].className += " active";
-         }
-         //Automatic Slideshow
-         let autoSlideIndex = 0;
-         autoShowSlides();
-     
-     function autoShowSlides() {
-       let i;
-       let slides = document.getElementsByClassName("mySlides");
-       let dots = document.getElementsByClassName("dot");
-       for (i = 0; i < slides.length; i++) {
-         slides[i].style.display = "none";
-       }
-       autoSlideIndex++;
-       if (autoSlideIndex > slides.length) {autoSlideIndex = 1}
-       for (i = 0; i < dots.length; i++) {
-         dots[i].className = dots[i].className.replace(" active", "");
-       }
-       slides[autoSlideIndex-1].style.display = "block";
-       dots[autoSlideIndex-1].className += " active";
-       setTimeout(autoShowSlides, 5000); // Change image every 5 seconds
-     }
-     </script>
-     
+        showSlides(slideIndex);
+    
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+    
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+    
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+        //Automatic Slideshow
+        let autoSlideIndex = 0;
+        autoShowSlides();
+    
+        function autoShowSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            autoSlideIndex++;
+            if (autoSlideIndex > slides.length) {autoSlideIndex = 1}
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[autoSlideIndex-1].style.display = "block";
+            dots[autoSlideIndex-1].className += " active";
+            setTimeout(autoShowSlides, 5000); // Change image every 5 seconds
+        }
+    </script>
 </body>
 </html>
